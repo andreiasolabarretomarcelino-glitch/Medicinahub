@@ -1,0 +1,245 @@
+/* Congress page layout */
+.congress-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.congress-filters {
+  background: #f9f9f9;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.filter-group {
+  margin-bottom: 1rem;
+}
+
+.filter-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--color-secondary);
+}
+
+.filter-group select,
+.filter-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: white;
+  font-size: 0.95rem;
+}
+
+.filter-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.filter-actions button {
+  margin-left: 0.5rem;
+}
+
+/* Congress card styling */
+.congress-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.congress-card {
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.congress-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.congress-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+  line-height: 1.4;
+}
+
+.congress-header {
+  margin-bottom: 1rem;
+}
+
+.congress-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.congress-details {
+  margin: 0.5rem 0 1rem;
+}
+
+.congress-details p {
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.congress-details i {
+  width: 20px;
+  margin-right: 10px;
+  color: var(--color-primary);
+}
+
+.congress-status {
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 8px;
+  background: #f5f7fa;
+}
+
+.countdown {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--color-secondary);
+}
+
+.event-today {
+  color: #28a745;
+}
+
+.event-soon {
+  color: #fd7e14;
+}
+
+.event-future {
+  color: var(--color-primary);
+}
+
+.event-past {
+  color: #6c757d;
+}
+
+.reg-status {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.reg-open {
+  background-color: rgba(40, 167, 69, 0.1);
+  color: #28a745;
+}
+
+.reg-future {
+  background-color: rgba(0, 123, 255, 0.1);
+  color: #007bff;
+}
+
+.reg-closed {
+  background-color: rgba(108, 117, 125, 0.1);
+  color: #6c757d;
+}
+
+.reg-unknown {
+  background-color: rgba(255, 193, 7, 0.1);
+  color: #ffc107;
+}
+
+.congress-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.congress-actions a,
+.congress-actions button {
+  padding: 0.6rem 1rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.follow-button {
+  padding: 0.6rem 1rem;
+  background-color: white;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.follow-button:hover {
+  background-color: var(--color-primary-light);
+}
+
+.follow-button.following {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.follow-redirect-message {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: rgba(0, 123, 255, 0.1);
+  border-radius: 5px;
+  text-align: center;
+}
+
+.follow-redirect-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.congress-empty {
+  text-align: center;
+  padding: 3rem;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  grid-column: 1 / -1;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .congress-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .filter-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .congress-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .congress-actions a,
+  .congress-actions button {
+    width: 100%;
+  }
+} 

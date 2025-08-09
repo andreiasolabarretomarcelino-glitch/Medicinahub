@@ -1,0 +1,78 @@
+stages:
+  - test
+  - build
+  - deploy
+
+variables:
+  NODE_VERSION: "16.14.0"
+
+# Cache node_modules for faster builds
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - public_html/frontend/node_modules/
+
+# Run linting and tests
+test:
+  stage: test
+  image: node:${NODE_VERSION}
+  script:
+    - cd public_html/frontend
+    - npm ci
+    - npm run lint || true # Run lint but don't fail the build yet
+    - npm test -- --passWithNoTests # Run tests or pass if none exist
+
+# Build frontend assets
+build:
+  stage: build
+  image: node:${NODE_VERSION}
+  script:
+    - cd public_html/frontend
+    - npm ci
+    - npm run build
+  artifacts:
+    paths:
+      - public_html/frontend/build/
+    expire_in: 1 week
+
+# Deploy to staging
+deploy_staging:
+  stage: deploy
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache openssh-client
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+  script:
+    - echo "Deploying to staging server..."
+    - scp -r public_html/frontend/build/* $STAGING_SERVER_USER@$STAGING_SERVER_HOST:$STAGING_SERVER_PATH
+  environment:
+    name: staging
+  only:
+    - main
+  when: manual # Make this a manual deployment
+
+# Deploy to production
+deploy_production:
+  stage: deploy
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache openssh-client
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+  script:
+    - echo "Deploying to production server..."
+    - scp -r public_html/frontend/build/* $PRODUCTION_SERVER_USER@$PRODUCTION_SERVER_HOST:$PRODUCTION_SERVER_PATH
+  environment:
+    name: production
+  only:
+    - main
+  when: manual # Make this a manual deployment 

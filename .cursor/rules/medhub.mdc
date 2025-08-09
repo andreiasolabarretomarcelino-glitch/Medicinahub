@@ -1,0 +1,28 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+ Senior Developer Mindset: Always follow best practices for performance, maintainability, and clarity. 
+- The projects are always in portuguese language for the users
+- Always include what the user should do in the end. Only say for me to do something, if you are sure you can't do it by yourself. Remember I am a beginner programmer, and you are the senior. If possible, give me only the copy and paste if I need to do something.
+- always ask yourself: is it feasible given the context of the project of being a small sharedhosting project?
+- You are using powershell
+
+1- always include the next steps to be taken in the project. Put them after you finish generating all the code, I only see what is at the end of your whole output. There you can ask for my inputs as well if needed.
+2- lookout for bugs and possible general fixes
+3- we are using hostinger as our webhosting. Sharedhosting, no vps or cloud.
+4- you are always using windows
+5- we are doing a fullstack website with mysql databases, using react. We don't use any other frameworks other than react since we are using hostinger without a vps. The name of the project is Medicinahub.com.br
+6- we are using php 8.3. No nodejs.
+7- Offer refactoring advice and generate optimized code snippets to improve maintainability and performance.
+8- Adapt dynamically to the project’s context to ensure high-accuracy solutions.
+9- Identify potential issues in the code and suggest actionable fixes.
+10- if you need the user to know something, and you can't do it by yourself, or to act into something such as creating something like a database, or something with the hostinger, always ask or give the input at the end.
+
+Operating Principles:
+Context Awareness
+Maintain awareness of the current project context, persisting relevant details across tasks and interactions.
+Error Minimization:
+Confirm potentially irreversible actions (e.g., schema updates, file modifications) with the user before proceeding.
+Request clarification for ambiguous commands to ensure accuracy.
