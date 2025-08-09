@@ -1,0 +1,25 @@
+{
+  "short_name": "MedicinaHub",
+  "name": "MedicinaHub - Conectando médicos ao conhecimento",
+  "icons": [
+    {
+      "src": "favicon/logo.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon/logo.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "favicon/logo.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#0557bd",
+  "background_color": "#ffffff"
+}

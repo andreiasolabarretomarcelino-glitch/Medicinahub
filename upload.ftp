@@ -1,0 +1,36 @@
+open medicinahub.com.br
+u843241338
+# Replace with your actual password in the next line
+Longtorso1!
+cd public_html
+lcd build
+prompt
+binary
+mput *
+cd static
+lcd static
+mkdir css
+cd css
+lcd css
+mput *
+cd ..
+mkdir js
+cd js
+lcd ../js
+mput *
+cd ..
+mkdir media
+cd media
+lcd ../media
+mput *
+cd ../..
+mkdir images
+cd images
+lcd ../images
+mput *
+cd ..
+mkdir frontend
+cd frontend
+lcd ../frontend
+mput *
+bye

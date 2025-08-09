@@ -1,0 +1,74 @@
+/* Page Transitions */
+.page-transition {
+  animation: fade-in 0.3s ease-in-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Link hover transitions */
+a {
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+a:hover {
+  transform: translateY(-1px);
+}
+
+/* Button click effect */
+button, .btn {
+  transition: all 0.2s ease;
+}
+
+button:active, .btn:active {
+  transform: scale(0.97);
+}
+
+/* Card hover transitions */
+.feature-card, .congress-card, .testimonial-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover, .congress-card:hover, .testimonial-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Menu transitions */
+.user-menu {
+  animation: menu-fade-in 0.2s ease-in-out;
+}
+
+@keyframes menu-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile menu transition */
+.main-nav.mobile-open {
+  transition: transform 0.3s ease, opacity 0.3s ease, visibility 0s;
+}
+
+/* Form element transitions */
+input, select, textarea {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--color-main);
+  box-shadow: 0 0 0 3px rgba(47, 75, 255, 0.1);
+} 

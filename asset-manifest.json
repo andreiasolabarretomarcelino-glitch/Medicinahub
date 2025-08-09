@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.46096f5d.css",
+    "main.js": "/static/js/main.2afea86a.js",
+    "static/js/453.8ab44547.chunk.js": "/static/js/453.8ab44547.chunk.js",
+    "static/media/Medicinahublogo.png": "/static/media/Medicinahublogo.6d1731188ec49fbebd4b.png",
+    "index.html": "/index.html",
+    "main.46096f5d.css.map": "/static/css/main.46096f5d.css.map",
+    "main.2afea86a.js.map": "/static/js/main.2afea86a.js.map",
+    "453.8ab44547.chunk.js.map": "/static/js/453.8ab44547.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.46096f5d.css",
+    "static/js/main.2afea86a.js"
+  ]
+}
