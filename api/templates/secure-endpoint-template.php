@@ -86,20 +86,14 @@ try {
         if (empty($token)) {
             ErrorHandler::handleAuthError('Authentication token is required');
         }
-        
-        // Verify token and get user
-        // $user = UserAuth::verifyToken($token);
-        // if (!$user) {
-        //     ErrorHandler::handleAuthError('Invalid or expired token');
-        // }
-        
-        // TODO: Implement token validation and user retrieval
-        // For now, we'll simulate a user for the template
-        $user = [
-            'id' => 1,
-            'email' => 'user@example.com',
-            'role' => 'user'
-        ];
+
+        // Verify token via Supabase and get user details
+        $sb = new SupabaseClient();
+        [$status, $userResponse] = $sb->getUser($token);
+        if ($status >= 400) {
+            ErrorHandler::handleAuthError('Invalid or expired token');
+        }
+        $user = json_decode($userResponse, true);
     }
     
     // Handle different HTTP methods
