@@ -313,8 +313,8 @@
   -moz-box-orient: vertical;
   -moz-line-clamp: 3;
   
-  display: box;
-  box-orient: vertical;
+  display: flex;
+  flex-direction: column;
 }
 
 .article-meta {

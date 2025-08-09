@@ -19,6 +19,45 @@ const Residencia = () => {
     status: ''
   });
   
+  // Function to fetch residency data - needs to be wrapped in useCallback
+  const fetchResidencies = React.useCallback(async () => {
+    setLoading(true);
+    
+    try {
+      // Build query string with filters
+      const queryParams = new URLSearchParams();
+      queryParams.append('page', currentPage);
+      queryParams.append('limit', 9); // 9 items per page
+      
+      if (filters.search) queryParams.append('search', filters.search);
+      if (filters.state) queryParams.append('estado', filters.state);
+      if (filters.specialty) queryParams.append('specialty', filters.specialty);
+      if (filters.status) queryParams.append('status', filters.status);
+      
+      // Make API request
+      const response = await fetch(`/api/residencias/list.php?${queryParams.toString()}`);
+      
+      if (!response.ok) {
+        throw new Error('Erro na rede ao buscar residências');
+      }
+      
+      const data = await response.json();
+      
+      if (data.status) {
+        setResidencies(data.residencies);
+        setTotalPages(data.total_pages);
+      } else {
+        setError(data.message || 'Erro ao buscar residências');
+        setResidencies([]);
+      }
+    } catch (err) {
+      setError('Erro ao carregar os programas de residência. Por favor, tente novamente mais tarde.');
+      setResidencies([]);
+    } finally {
+      setLoading(false);
+    }
+  }, [currentPage, filters]); // Add dependencies here
+  
   // Initial load of auxiliary data
   useEffect(() => {
     // Fetch specialties and status types when component mounts
@@ -68,45 +107,6 @@ const Residencia = () => {
       console.error('Erro ao buscar tipos de status:', err);
     }
   };
-  
-  // Function to fetch residency data - needs to be wrapped in useCallback
-  const fetchResidencies = React.useCallback(async () => {
-    setLoading(true);
-    
-    try {
-      // Build query string with filters
-      const queryParams = new URLSearchParams();
-      queryParams.append('page', currentPage);
-      queryParams.append('limit', 9); // 9 items per page
-      
-      if (filters.search) queryParams.append('search', filters.search);
-      if (filters.state) queryParams.append('estado', filters.state);
-      if (filters.specialty) queryParams.append('specialty', filters.specialty);
-      if (filters.status) queryParams.append('status', filters.status);
-      
-      // Make API request
-      const response = await fetch(`/api/residencias/list.php?${queryParams.toString()}`);
-      
-      if (!response.ok) {
-        throw new Error('Erro na rede ao buscar residências');
-      }
-      
-      const data = await response.json();
-      
-      if (data.status) {
-        setResidencies(data.residencies);
-        setTotalPages(data.total_pages);
-      } else {
-        setError(data.message || 'Erro ao buscar residências');
-        setResidencies([]);
-      }
-    } catch (err) {
-      setError('Erro ao carregar os programas de residência. Por favor, tente novamente mais tarde.');
-      setResidencies([]);
-    } finally {
-      setLoading(false);
-    }
-  }, [currentPage, filters]); // Add dependencies here
   
   // Function to apply filters
   const applyFilters = (e) => {

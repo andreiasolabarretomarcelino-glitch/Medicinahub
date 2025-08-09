@@ -24,28 +24,27 @@ const CongressCard = ({ congress }) => {
   const daysToRegStart = congress.registration_start ? getDaysDifference(congress.registration_start) : null;
   const daysToRegEnd = congress.registration_end ? getDaysDifference(congress.registration_end) : null;
 
-  // Calculate registration status
-  const now = new Date();
-  const regStartDate = congress.registration_start ? new Date(congress.registration_start) : null;
-  const regEndDate = congress.registration_end ? new Date(congress.registration_end) : null;
+  // Calculate registration status (commented out for future use)
+  // const now = new Date();
+  // const regStartDate = congress.registration_start ? new Date(congress.registration_start) : null;
+  // const regEndDate = congress.registration_end ? new Date(congress.registration_end) : null;
   
-  // We're keeping these variables but using them in a comment for now to avoid ESLint warnings
-  // Will be used in future UI improvements
-  let registrationStatusMessage = 'Não informado';
-  let registrationStatusClass = '';
+  // Registration status variables for future UI improvements
+  // let registrationStatusMessage = 'Não informado';
+  // let registrationStatusClass = '';
   
-  if (regStartDate && regEndDate) {
-    if (now < regStartDate) {
-      registrationStatusMessage = 'Inscrições em breve';
-      registrationStatusClass = 'reg-future';
-    } else if (now >= regStartDate && now <= regEndDate) {
-      registrationStatusMessage = 'Inscrições abertas';
-      registrationStatusClass = 'reg-open';
-    } else {
-      registrationStatusMessage = 'Inscrições encerradas';
-      registrationStatusClass = 'reg-closed';
-    }
-  }
+  // if (regStartDate && regEndDate) {
+  //   if (now < regStartDate) {
+  //     registrationStatusMessage = 'Inscrições em breve';
+  //     registrationStatusClass = 'reg-future';
+  //   } else if (now >= regStartDate && now <= regEndDate) {
+  //     registrationStatusMessage = 'Inscrições abertas';
+  //     registrationStatusClass = 'reg-open';
+  //   } else {
+  //     registrationStatusMessage = 'Inscrições encerradas';
+  //     registrationStatusClass = 'reg-closed';
+  //   }
+  // }
 
   // Check if user is logged in and if they're following the congress
   useEffect(() => {
@@ -137,63 +136,59 @@ const CongressCard = ({ congress }) => {
         )}
         
         {/* Registration status will be displayed here in the future */}
-        {/* <div className={`registration-status ${registrationStatusClass}`}>
-          {registrationStatusMessage}
-        </div> */}
       </div>
       
       <div className="congress-actions">
         {congress.website && (
-          <a href={congress.website} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-            <i className="fas fa-external-link-alt"></i> Acessar Site
+          <a 
+            href={congress.website} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="btn btn-primary"
+          >
+            <i className="fas fa-external-link-alt"></i> Saiba Mais
           </a>
         )}
         
         <button 
-          className={`follow-button ${isFollowing ? 'following' : ''}`}
           onClick={handleFollowToggle}
           disabled={followLoading}
+          className={`btn ${isFollowing ? 'btn-secondary' : 'btn-outline'}`}
         >
           {followLoading ? (
             <i className="fas fa-spinner fa-spin"></i>
           ) : isFollowing ? (
             <>
-              <i className="fas fa-check"></i> Seguindo
+              <i className="fas fa-heart"></i> Seguindo
             </>
           ) : (
             <>
-              <i className="fas fa-bell"></i> Seguir
+              <i className="far fa-heart"></i> Seguir
             </>
           )}
         </button>
       </div>
       
-      {followError && (
-        <div className="follow-error">
-          <i className="fas fa-exclamation-circle"></i> {followError}
-        </div>
-      )}
-      
+      {/* Success/Error Messages */}
       {followSuccess && (
-        <div className="follow-success">
-          <i className="fas fa-check-circle"></i> {followSuccess}
+        <div className="alert alert-success">
+          {followSuccess}
         </div>
       )}
       
+      {followError && (
+        <div className="alert alert-error">
+          {followError}
+        </div>
+      )}
+      
+      {/* Login Prompt */}
       {showLoginPrompt && (
-        <div className="follow-redirect-message">
-          <p>Você precisa estar logado para seguir congressos.</p>
-          <div className="follow-redirect-buttons">
-            <Link to="/login" className="btn btn-primary btn-sm">
-              Fazer Login
-            </Link>
-            <button 
-              className="btn btn-outline btn-sm"
-              onClick={() => setShowLoginPrompt(false)}
-            >
-              Cancelar
-            </button>
-          </div>
+        <div className="login-prompt">
+          <p>Faça login para seguir congressos</p>
+          <Link to="/login" className="btn btn-primary">
+            Fazer Login
+          </Link>
         </div>
       )}
     </div>
