@@ -2,45 +2,40 @@
   "version": 2,
   "buildCommand": "cd frontend && npm install && npm run build",
   "outputDirectory": "frontend/build",
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
     },
     {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
+      "source": "/static/(.*)",
+      "destination": "/static/$1"
     },
     {
-      "src": "/favicon.ico",
-      "dest": "/favicon.ico"
+      "source": "/favicon.ico",
+      "destination": "/favicon.ico"
     },
     {
-      "src": "/manifest.json",
-      "dest": "/manifest.json"
+      "source": "/manifest.json",
+      "destination": "/manifest.json"
     },
     {
-      "src": "/logo192.png",
-      "dest": "/logo192.png"
+      "source": "/logo192.png",
+      "destination": "/logo192.png"
     },
     {
-      "src": "/logo512.png",
-      "dest": "/logo512.png"
+      "source": "/logo512.png",
+      "destination": "/logo512.png"
     },
     {
-      "src": "/robots.txt",
-      "dest": "/robots.txt"
+      "source": "/robots.txt",
+      "destination": "/robots.txt"
     },
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ],
-  "functions": {
-    "api/**/*.php": {
-      "runtime": "vercel-php@0.6.0"
-    }
-  },
   "headers": [
     {
       "source": "/manifest.json",
@@ -64,5 +59,10 @@
         }
       ]
     }
-  ]
+  ],
+  "functions": {
+    "api/**/*.php": {
+      "runtime": "vercel-php@0.6.0"
+    }
+  }
 } 
