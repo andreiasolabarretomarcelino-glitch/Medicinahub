@@ -47,8 +47,8 @@ ini_set('session.use_only_cookies', 1);
 ini_set('session.cookie_samesite', 'Lax');
 ini_set('session.gc_maxlifetime', 28800); // 8 hours
 
-// Load database configuration
-require_once CONFIG_PATH . '/database.php';
+// Load Supabase configuration
+require_once CONFIG_PATH . '/supabase.php';
 
 // Autoload classes
 spl_autoload_register(function($className) {
