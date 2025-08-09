@@ -1,9 +1,7 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 const FeatureCard = ({ icon, title, text }) => {
   return (
     <div className="feature-card">
-      <FontAwesomeIcon icon={icon} className="feature-icon" />
+      <div className="feature-icon">{icon}</div>
       <h3>{title}</h3>
       <p>{text}</p>
     </div>
